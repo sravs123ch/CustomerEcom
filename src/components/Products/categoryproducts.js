@@ -540,7 +540,7 @@ const GetAllProducts = () => {
                   className="border p-4 rounded-lg relative"
                 >
                   {/* Wishlist toggle button */}
-                  <button
+                  {/* <button
                     onClick={() => handleWishlistToggle(product)}
                     className="absolute top-2 right-2"
                   >
@@ -553,8 +553,35 @@ const GetAllProducts = () => {
                           ? "text-red-600"
                           : "text-gray-300"
                       }`}
+                      style={{
+                        fill: wishlistItems.some((item) => item.productId === product.productId)
+                          ? "red"
+                          : "none", // Default to no fill when not active
+                      }}
                     />
-                  </button>
+                  </button> */}
+                  <button
+  onClick={() => handleWishlistToggle(product)}
+  className="absolute top-2 right-2"
+>
+  <FiHeart
+    size={24}
+    className={`${
+      wishlistItems.some((item) => item.productId === product.productId)
+        ? "text-red-600"
+        : "text-gray-300"
+    }`}
+    style={{
+      stroke: wishlistItems.some((item) => item.productId === product.productId)
+        ? "red"
+        : "gray", // Default to gray stroke
+      fill: wishlistItems.some((item) => item.productId === product.productId)
+        ? "red"
+        : "none", // Ensure red fill when active
+    }}
+  />
+</button>
+
 
                   {/* Link to product details page */}
                   <Link to={`/product/${product.productId}`}>
