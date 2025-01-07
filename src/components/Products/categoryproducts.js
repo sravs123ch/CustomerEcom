@@ -331,10 +331,10 @@ const GetAllProducts = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-
+  const [selectedDiscount, setSelectedDiscount] = useState("");
   const queryParams = new URLSearchParams(location.search);
   const categoryID = queryParams.get("categoryID");
 
@@ -385,29 +385,75 @@ const GetAllProducts = () => {
   const handleColorFilterChange = (event) => {
     setSelectedColor(event.target.value);
   };
+  const handleBrandFilterChange = (event) => {
+    setSelectedBrand(event.target.value);
+  };
 
-  // Filter products based on price and color
+
+//  // Filter products based on price, color, and brand
+//  const filteredProducts = products.filter((product) => {
+//   let priceMatch = true;
+//   let colorMatch = true;
+//   let brandMatch = true; // New variable for brand filter
+
+//   // Check price range
+//   if (selectedPriceRange) {
+//     const [minPrice, maxPrice] = selectedPriceRange.split("-").map(Number);
+//     const productPrice = parseFloat(product.MRP.replace(/[^\d.-]/g, ''));
+//     priceMatch = !isNaN(productPrice) && productPrice >= minPrice && productPrice <= maxPrice;
+//   }
+
+//   // Check color
+//   if (selectedColor) {
+//     colorMatch = product.variants?.some(variant => variant.color?.toLowerCase() === selectedColor.toLowerCase());
+//   }
+
+//   // Check brand
+//   if (selectedBrand) {
+//     brandMatch = product.brandName?.toLowerCase() === selectedBrand.toLowerCase();
+//   }
+
+//   return priceMatch && colorMatch && brandMatch;
+// });
+
+  // Handle discount change
+  const handleDiscountFilterChange = (event) => {
+    setSelectedDiscount(event.target.value); // Set selected discount
+  };
+
+  // Filter products based on price, color, brand, and discount
   const filteredProducts = products.filter((product) => {
     let priceMatch = true;
     let colorMatch = true;
-  
+    let brandMatch = true;
+    let discountMatch = true; // New variable for discount filter
+
     // Check price range
     if (selectedPriceRange) {
       const [minPrice, maxPrice] = selectedPriceRange.split("-").map(Number);
-  
-      // Ensure that MRP is a number before comparing
-      const productPrice = parseFloat(product.MRP.replace(/[^\d.-]/g, '')); // Remove any non-numeric characters
+      const productPrice = parseFloat(product.MRP.replace(/[^\d.-]/g, ''));
       priceMatch = !isNaN(productPrice) && productPrice >= minPrice && productPrice <= maxPrice;
     }
-  
+
     // Check color
     if (selectedColor) {
-      colorMatch = product.variants?.some(variant => variant.color?.toLowerCase() === selectedColor?.toLowerCase());
+      colorMatch = product.variants?.some(variant => variant.colorName?.toLowerCase() === selectedColor.toLowerCase());
     }
-  
-    return priceMatch && colorMatch;
+
+    // Check brand
+    if (selectedBrand) {
+      brandMatch = product.brandName?.toLowerCase() === selectedBrand.toLowerCase();
+    }
+
+    // Check discount
+    if (selectedDiscount) {
+      const discountPercentage = parseInt(product.productDiscount.replace('%', ''));
+      const [minDiscount, maxDiscount] = selectedDiscount.split("-").map(Number);
+      discountMatch = discountPercentage >= minDiscount && discountPercentage <= maxDiscount;
+    }
+
+    return priceMatch && colorMatch && brandMatch && discountMatch;
   });
-  
 
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>{error}</p>;
@@ -415,7 +461,7 @@ const GetAllProducts = () => {
   return (
     <div className="mt-32 flex">
       {/* Left-side filter section */}
-      <div className="w-1/4 p-4 bg-gray-100">
+      <div className="w-1/5 p-4 bg-gray-100">
         <h2 className="text-lg font-bold mb-4">Filters</h2>
 
         {/* Price Filter */}
@@ -450,6 +496,35 @@ const GetAllProducts = () => {
             <option value="White">White</option>
           </select>
         </div>
+
+     {/* Brand Filter */}
+<div className="mb-4">
+  <h3 className="font-semibold mb-2">Brand</h3>
+  <select
+    value={selectedBrand}
+    onChange={handleBrandFilterChange}
+    className="w-full p-2 border rounded"
+  >
+    <option value="">Select Brand</option>
+    <option value="Nike">Nike</option>
+    <option value="Adidas">Adidas</option>
+    <option value="Puma">Puma</option>
+    <option value="Reebok">Reebok</option>
+    <option value="Under Armour">Under Armour</option>
+    <option value="New Balance">New Balance</option>
+  </select>
+</div>
+ {/* Discount Filter */}
+ <div className="mb-4">
+ <h3 className="font-semibold mb-2">Select Discount</h3>
+ <select value={selectedDiscount} onChange={handleDiscountFilterChange}  className="w-full p-2 border rounded">
+        <option value="">Select Discount</option>
+        <option value="0-10">0% - 10%</option>
+        <option value="11-20">11% - 20%</option>
+        <option value="21-30">21% - 30%</option>
+        <option value="31-50">31% - 50%</option>
+      </select>
+      </div>
       </div>
 
       {/* Product Listing */}

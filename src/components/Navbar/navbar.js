@@ -24,6 +24,7 @@ import {
 import { BsHeart } from 'react-icons/bs'; // Import wishlist icon
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Logo from "../../assets/logo/shared image.jpg";
+import logo_ecom from "../../assets/logo/ecom-logo1.png";
 import Login from "../../components/Login";
 import RegisterForm from "../../Component/phoneregistration";
 import { GlobalContext } from '../../context/GlobalContext';
@@ -427,10 +428,11 @@ export default function Example() {
                       <span className="sr-only">Your Company</span>
                       <img
                         alt=""
-                        src={Logo}
-                        className="h-20
+                        // src={Logo}
+                        src={logo_ecom}
+                        className="h-24
                         
-                         w-20"
+                         w-24"
                       />
                     </a>
                   </div>
