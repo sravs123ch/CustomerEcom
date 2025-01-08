@@ -389,33 +389,6 @@ const GetAllProducts = () => {
     setSelectedBrand(event.target.value);
   };
 
-
-//  // Filter products based on price, color, and brand
-//  const filteredProducts = products.filter((product) => {
-//   let priceMatch = true;
-//   let colorMatch = true;
-//   let brandMatch = true; // New variable for brand filter
-
-//   // Check price range
-//   if (selectedPriceRange) {
-//     const [minPrice, maxPrice] = selectedPriceRange.split("-").map(Number);
-//     const productPrice = parseFloat(product.MRP.replace(/[^\d.-]/g, ''));
-//     priceMatch = !isNaN(productPrice) && productPrice >= minPrice && productPrice <= maxPrice;
-//   }
-
-//   // Check color
-//   if (selectedColor) {
-//     colorMatch = product.variants?.some(variant => variant.color?.toLowerCase() === selectedColor.toLowerCase());
-//   }
-
-//   // Check brand
-//   if (selectedBrand) {
-//     brandMatch = product.brandName?.toLowerCase() === selectedBrand.toLowerCase();
-//   }
-
-//   return priceMatch && colorMatch && brandMatch;
-// });
-
   // Handle discount change
   const handleDiscountFilterChange = (event) => {
     setSelectedDiscount(event.target.value); // Set selected discount
@@ -459,153 +432,272 @@ const GetAllProducts = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="mt-32 flex">
-      {/* Left-side filter section */}
-      <div className="w-1/5 p-4 bg-gray-100">
-        <h2 className="text-lg font-bold mb-4">Filters</h2>
+//     <div className="mt-32 flex">
+//       {/* Left-side filter section */}
+//       <div className="w-1/5 p-4 bg-gray-100">
+//         <h2 className="text-lg font-bold mb-4">Filters</h2>
 
-        {/* Price Filter */}
-        <div className="mb-4">
-          <h3 className="font-semibold mb-2">Price Range</h3>
-          <select
-            value={selectedPriceRange}
-            onChange={handlePriceFilterChange}
-            className="w-full p-2 border rounded"
-          >
-            <option value="">Select Price Range</option>
-            <option value="0-1000">Under $1000</option>
-            <option value="1001-2000">$1001 - $2000</option>
-            <option value="2001-4000">$2001 - $4000</option>
-            <option value="4001-5000">$4001 - $5000</option>
-          </select>
-        </div>
+//         {/* Price Filter */}
+//         <div className="mb-4">
+//           <h3 className="font-semibold mb-2">Price Range</h3>
+//           <select
+//             value={selectedPriceRange}
+//             onChange={handlePriceFilterChange}
+//             className="w-full p-2 border rounded"
+//           >
+//             <option value="">Select Price Range</option>
+//             <option value="0-1000">Under $1000</option>
+//             <option value="1001-2000">$1001 - $2000</option>
+//             <option value="2001-4000">$2001 - $4000</option>
+//             <option value="4001-5000">$4001 - $5000</option>
+//           </select>
+//         </div>
 
-        {/* Color Filter */}
-        <div>
-          <h3 className="font-semibold mb-2">Color</h3>
-          <select
-            value={selectedColor}
-            onChange={handleColorFilterChange}
-            className="w-full p-2 border rounded"
-          >
-            <option value="">Select Color</option>
-            <option value="Red">Red</option>
-            <option value="Blue">Blue</option>
-            <option value="Green">Green</option>
-            <option value="Black">Black</option>
-            <option value="White">White</option>
-          </select>
-        </div>
+//         {/* Color Filter */}
+//         <div>
+//           <h3 className="font-semibold mb-2">Color</h3>
+//           <select
+//             value={selectedColor}
+//             onChange={handleColorFilterChange}
+//             className="w-full p-2 border rounded"
+//           >
+//             <option value="">Select Color</option>
+//             <option value="Red">Red</option>
+//             <option value="Blue">Blue</option>
+//             <option value="Green">Green</option>
+//             <option value="Black">Black</option>
+//             <option value="White">White</option>
+//           </select>
+//         </div>
 
-     {/* Brand Filter */}
-<div className="mb-4">
-  <h3 className="font-semibold mb-2">Brand</h3>
-  <select
-    value={selectedBrand}
-    onChange={handleBrandFilterChange}
-    className="w-full p-2 border rounded"
-  >
-    <option value="">Select Brand</option>
-    <option value="Nike">Nike</option>
-    <option value="Adidas">Adidas</option>
-    <option value="Puma">Puma</option>
-    <option value="Reebok">Reebok</option>
-    <option value="Under Armour">Under Armour</option>
-    <option value="New Balance">New Balance</option>
-  </select>
-</div>
- {/* Discount Filter */}
- <div className="mb-4">
- <h3 className="font-semibold mb-2">Select Discount</h3>
- <select value={selectedDiscount} onChange={handleDiscountFilterChange}  className="w-full p-2 border rounded">
+//      {/* Brand Filter */}
+// <div className="mb-4">
+//   <h3 className="font-semibold mb-2">Brand</h3>
+//   <select
+//     value={selectedBrand}
+//     onChange={handleBrandFilterChange}
+//     className="w-full p-2 border rounded"
+//   >
+//     <option value="">Select Brand</option>
+//     <option value="Nike">Nike</option>
+//     <option value="Adidas">Adidas</option>
+//     <option value="Puma">Puma</option>
+//     <option value="Reebok">Reebok</option>
+//     <option value="Under Armour">Under Armour</option>
+//     <option value="New Balance">New Balance</option>
+//   </select>
+// </div>
+//  {/* Discount Filter */}
+//  <div className="mb-4">
+//  <h3 className="font-semibold mb-2">Select Discount</h3>
+//  <select value={selectedDiscount} onChange={handleDiscountFilterChange}  className="w-full p-2 border rounded">
+//         <option value="">Select Discount</option>
+//         <option value="0-10">0% - 10%</option>
+//         <option value="11-20">11% - 20%</option>
+//         <option value="21-30">21% - 30%</option>
+//         <option value="31-50">31% - 50%</option>
+//       </select>
+//       </div>
+//       </div>
+
+//       {/* Product Listing */}
+//       <div className="w-3/4 p-4">
+//         <div className="grid grid-cols-4 gap-4">
+//           {filteredProducts.length > 0 ? (
+//             filteredProducts.map((product) => {
+//               const productImage = product.variants?.[0]?.images?.[0];
+
+//               return (
+//                 <div
+//                   key={product.productId}
+//                   className="border p-4 rounded-lg relative"
+//                 >
+//                   {/* Wishlist toggle button */}
+//                   <button
+//   onClick={() => handleWishlistToggle(product)}
+//   className="absolute top-2 right-2"
+// >
+//   <FiHeart
+//     size={24}
+//     className={`${
+//       wishlistItems.some((item) => item.productId === product.productId)
+//         ? "text-red-600"
+//         : "text-gray-300"
+//     }`}
+//     style={{
+//       stroke: wishlistItems.some((item) => item.productId === product.productId)
+//         ? "red"
+//         : "gray", // Default to gray stroke
+//       fill: wishlistItems.some((item) => item.productId === product.productId)
+//         ? "red"
+//         : "none", // Ensure red fill when active
+//     }}
+//   />
+// </button>
+
+
+//                   {/* Link to product details page */}
+//                   <Link to={`/product/${product.productId}`}>
+//                     <img
+//                       src={productImage || "default-image.jpg"}
+//                       alt={product.productName}
+//                       className="w-full h-80 object-cover mb-4 rounded-lg"
+//                     />
+//                   </Link>
+//                   <p className="text-center text-sm font-bold text-gray-600">
+//                     {product.productName}
+//                   </p>
+//                   <p className="text-center text-sm text-gray-500">
+//                     ${product.MRP}
+//                   </p>
+//                 </div>
+//               );
+//             })
+//           ) : (
+//             <p>No products available in this category.</p>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+
+<div className="mt-32 flex flex-col md:flex-row">
+  {/* Left-side filter section */}
+  <div className="w-full md:w-1/5 p-4 bg-gray-100">
+    <h2 className="text-lg font-bold mb-4">Filters</h2>
+
+    {/* Price Filter */}
+    <div className="mb-4">
+      <h3 className="font-semibold mb-2">Price Range</h3>
+      <select
+        value={selectedPriceRange}
+        onChange={handlePriceFilterChange}
+        className="w-full p-2 border rounded"
+      >
+        <option value="">Select Price Range</option>
+        <option value="0-1000">Under $1000</option>
+        <option value="1001-2000">$1001 - $2000</option>
+        <option value="2001-4000">$2001 - $4000</option>
+        <option value="4001-5000">$4001 - $5000</option>
+      </select>
+    </div>
+
+    {/* Color Filter */}
+    <div className="mb-4">
+      <h3 className="font-semibold mb-2">Color</h3>
+      <select
+        value={selectedColor}
+        onChange={handleColorFilterChange}
+        className="w-full p-2 border rounded"
+      >
+        <option value="">Select Color</option>
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Green">Green</option>
+        <option value="Black">Black</option>
+        <option value="White">White</option>
+      </select>
+    </div>
+
+    {/* Brand Filter */}
+    <div className="mb-4">
+      <h3 className="font-semibold mb-2">Brand</h3>
+      <select
+        value={selectedBrand}
+        onChange={handleBrandFilterChange}
+        className="w-full p-2 border rounded"
+      >
+        <option value="">Select Brand</option>
+        <option value="Nike">Nike</option>
+        <option value="Adidas">Adidas</option>
+        <option value="Puma">Puma</option>
+        <option value="Reebok">Reebok</option>
+        <option value="Under Armour">Under Armour</option>
+        <option value="New Balance">New Balance</option>
+      </select>
+    </div>
+
+    {/* Discount Filter */}
+    <div className="mb-4">
+      <h3 className="font-semibold mb-2">Select Discount</h3>
+      <select
+        value={selectedDiscount}
+        onChange={handleDiscountFilterChange}
+        className="w-full p-2 border rounded"
+      >
         <option value="">Select Discount</option>
         <option value="0-10">0% - 10%</option>
         <option value="11-20">11% - 20%</option>
         <option value="21-30">21% - 30%</option>
         <option value="31-50">31% - 50%</option>
       </select>
-      </div>
-      </div>
-
-      {/* Product Listing */}
-      <div className="w-3/4 p-4">
-        <div className="grid grid-cols-4 gap-4">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => {
-              const productImage = product.variants?.[0]?.images?.[0];
-
-              return (
-                <div
-                  key={product.productId}
-                  className="border p-4 rounded-lg relative"
-                >
-                  {/* Wishlist toggle button */}
-                  {/* <button
-                    onClick={() => handleWishlistToggle(product)}
-                    className="absolute top-2 right-2"
-                  >
-                    <FiHeart
-                      size={24}
-                      className={`${
-                        wishlistItems.some(
-                          (item) => item.productId === product.productId
-                        )
-                          ? "text-red-600"
-                          : "text-gray-300"
-                      }`}
-                      style={{
-                        fill: wishlistItems.some((item) => item.productId === product.productId)
-                          ? "red"
-                          : "none", // Default to no fill when not active
-                      }}
-                    />
-                  </button> */}
-                  <button
-  onClick={() => handleWishlistToggle(product)}
-  className="absolute top-2 right-2"
->
-  <FiHeart
-    size={24}
-    className={`${
-      wishlistItems.some((item) => item.productId === product.productId)
-        ? "text-red-600"
-        : "text-gray-300"
-    }`}
-    style={{
-      stroke: wishlistItems.some((item) => item.productId === product.productId)
-        ? "red"
-        : "gray", // Default to gray stroke
-      fill: wishlistItems.some((item) => item.productId === product.productId)
-        ? "red"
-        : "none", // Ensure red fill when active
-    }}
-  />
-</button>
-
-
-                  {/* Link to product details page */}
-                  <Link to={`/product/${product.productId}`}>
-                    <img
-                      src={productImage || "default-image.jpg"}
-                      alt={product.productName}
-                      className="w-full h-80 object-cover mb-4 rounded-lg"
-                    />
-                  </Link>
-                  <p className="text-center text-sm font-bold text-gray-600">
-                    {product.productName}
-                  </p>
-                  <p className="text-center text-sm text-gray-500">
-                    ${product.MRP}
-                  </p>
-                </div>
-              );
-            })
-          ) : (
-            <p>No products available in this category.</p>
-          )}
-        </div>
-      </div>
     </div>
+  </div>
+
+  {/* Product Listing */}
+  <div className="w-full md:w-4/5 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product) => {
+          const productImage = product.variants?.[0]?.images?.[0];
+
+          return (
+            <div
+              key={product.productId}
+              className="border p-4 rounded-lg relative"
+            >
+              {/* Wishlist toggle button */}
+              <button
+                onClick={() => handleWishlistToggle(product)}
+                className="absolute top-2 right-2"
+              >
+                <FiHeart
+                  size={24}
+                  className={`${
+                    wishlistItems.some(
+                      (item) => item.productId === product.productId
+                    )
+                      ? "text-red-600"
+                      : "text-gray-300"
+                  }`}
+                  style={{
+                    stroke: wishlistItems.some(
+                      (item) => item.productId === product.productId
+                    )
+                      ? "red"
+                      : "gray", // Default to gray stroke
+                    fill: wishlistItems.some(
+                      (item) => item.productId === product.productId
+                    )
+                      ? "red"
+                      : "none", // Ensure red fill when active
+                  }}
+                />
+              </button>
+
+              {/* Link to product details page */}
+              <Link to={`/product/${product.productId}`}>
+                <img
+                  src={productImage || "default-image.jpg"}
+                  alt={product.productName}
+                  className="w-full h-60 sm:h-72 md:h-80 object-cover mb-4 rounded-lg"
+                />
+              </Link>
+              <p className="text-center text-sm font-bold text-gray-600">
+                {product.productName}
+              </p>
+              <p className="text-center text-sm text-gray-500">
+                ${product.MRP}
+              </p>
+            </div>
+          );
+        })
+      ) : (
+        <p>No products available in this category.</p>
+      )}
+    </div>
+  </div>
+</div>
+
   );
 };
 
