@@ -622,7 +622,7 @@ export default function Example() {
                   {/* Logo (lg-) */}
                   <a href="#" className="lg:hidden">
                     <span className="sr-only">Your Company</span>
-                    <img alt="" src={logo_ecom} className="h-14 w-22" />
+                    <img alt="" src={logo_ecom} className="h-20 w-20" />
                   </a>
 
                   <div className="flex flex-1 items-center justify-end">

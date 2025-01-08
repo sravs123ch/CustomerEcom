@@ -2357,13 +2357,21 @@ const ProductCarousel = () => {
     </div>
 
   {/* Offer Image */}
-  <div className="relative w-full overflow-hidden mt-10">
+  {/* <div className="relative w-full overflow-hidden mt-10">
     <img
       src="offer.png"
       alt="Featured Offer"
       className="w-full h-96 object-cover mb-4 rounded"
     />
-  </div>
+  </div> */}
+  <div className="relative w-full overflow-hidden mt-10">
+  <img
+    src="offer.png"
+    alt="Featured Offer"
+    className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover mb-4 rounded"
+  />
+</div>
+
 </div>
 
 
