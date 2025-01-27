@@ -867,6 +867,9 @@ export default function Example() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
   return (
     <div className="bg-white">
       {/* Mobile menu */}
@@ -1116,7 +1119,7 @@ export default function Example() {
                 >
                   Create an account
                 </a> */}
-                 <button
+                 {/* <button
           onClick={handleRegisterOpen}
           className="text-sm font-medium text-white hover:text-gray-100"
         >
@@ -1137,7 +1140,25 @@ export default function Example() {
                   {loginOpen && (
                     <Login isOpen={loginOpen} onClose={handleClose} />
                   )}
-                </div>
+                </div> */}
+              <div className="flex items-center space-x-4">
+  <button
+    onClick={() => handleNavigation('/PhoneNumberForm')}
+    className="text-sm font-medium text-white hover:text-gray-100"
+  >
+    Create an account
+  </button>
+
+  <span aria-hidden="true" className="h-6 w-px bg-gray-600" />
+
+  <button
+    onClick={() => handleNavigation('/login')}
+    className="text-sm font-medium text-white hover:text-gray-100"
+  >
+    Sign in
+  </button>
+</div>
+
               </div>
             </div>
           </div>
@@ -1466,8 +1487,37 @@ export default function Example() {
     </div>
   </li>
 </ul>
-
-
+{/* <ul
+  className={`flex items-center gap-4 lg:gap-6 w-full bg-white py-4`} // Decreased gap on mobile (gap-4) and kept it larger on large screens (gap-6)
+  style={{ color: "#000000" }}
+>
+  <li className="nav-item mx-2">
+    <div onClick={() => navigate("/wishlist")} className="relative">
+      <BsHeart className="text-xl cursor-pointer" />
+      <span
+        className={`absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none ${
+          wishlistItems.length === 0
+        } rounded-full transform translate-x-1/2 -translate-y-1/2`}
+      >
+        {wishlistItems.length === 0 ? "0" : wishlistItems.length}
+      </span>
+    </div>
+  </li>
+  <li className="nav-item mx-2">
+    <div onClick={() => navigate("/cart")} className="relative">
+      <BsCart3 className="text-xl cursor-pointer" />
+      <span
+        className={`absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none ${
+          cartItems.length === 0
+            ? "bg-red-600 text-white"
+            : "bg-red-600 text-red-100"
+        } rounded-full transform translate-x-1/2 -translate-y-1/2`}
+      >
+        {cartItems.length === 0 ? "0" : uniqueItemsCount}
+      </span>
+    </div>
+  </li>
+</ul> */}
                     </div>
                   </div>
                 </div>

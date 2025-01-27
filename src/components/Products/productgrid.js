@@ -2259,63 +2259,6 @@ const ProductCarousel = () => {
   <h1 className="text-4xl font-normal text-center text-black mb-4">
    Shop By Category
   </h1>
-
-  {/* Category Buttons - Single Line */}
-  {/* <div className="flex space-x-4 mb-6 overflow-x-auto scrollbar-hide">
-    {categories?.length > 0 ? (
-      categories.map((category) => (
-        <button
-          key={category.CategoryID}
-          onClick={() => setActiveCategory(category.CategoryName)}
-          className={`hover:text-white px-4 py-2 rounded-full hover:bg-blue-600 text-black border border-black ${
-            activeCategory === category.CategoryName ? "bg-blue-600 text-white" : ""
-          }`}
-        >
-          {category.CategoryName}
-        </button>
-      ))
-    ) : (
-      <p>Loading categories...</p>
-    )}
-  </div> */}
-
-    {/* <div className="mb-8">
-      {categories?.length > 0 ? (
-        <Carousel responsive={responsive} infinite={false} arrows={true}>
-          {categories.map((category) => (
-            <div
-              key={category.CategoryID}
-              className="border p-4 rounded-lg flex flex-col items-center"
-              onClick={() => handleCategoryClick(category.CategoryID)} // Add onClick handler
-            >
-              <img
-                src={category.CategoryImage}
-                alt={category.CategoryName}
-                className="w-40 h-40 object-cover mb-4 rounded-lg cursor-pointer" // Add cursor-pointer
-              />
-              <p className="text-center text-sm font-bold text-gray-600">
-                {category.CategoryName}
-              </p>
-              <p className="text-center text-sm font-bold text-gray-600">
-                 Shop Now
-              </p>
-            </div>
-          ))}
-          <div className="flex flex-col items-center justify-center">
-            <Link to="/categories-list" className="flex flex-col items-center">
-              <div className="relative flex items-center justify-center w-16 h-16 bg-white border border-blue-600 rounded-full shadow-md">
-                <span className="text-2xl text-blue-600">
-                  <FiChevronRight />
-                </span>
-              </div>
-              <span className="mt-2 text-lg font-bold text-black">View All</span>
-            </Link>
-          </div>
-        </Carousel>
-      ) : (
-        <p>Loading categories...</p>
-      )}
-    </div> */}
   <div className="mb-8">
       {categories?.length > 0 ? (
         <Carousel responsive={responsive} infinite={false} arrows={true}>
